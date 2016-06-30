@@ -11,6 +11,15 @@
 
 ;; LICENSE:
 
+(defvar mtl-syntax-table nil "Syntax table for mtl-mode")
+(setq mtl-syntax-table
+      (let((synTable(make-syntax-table)))
+
+        (modify-syntax-entry ?\( ". 1" synTable)
+        (modify-syntax-entry ?\) ". 4" synTable)
+        (modify-syntax-entry ?* ". 23" synTable)
+
+        synTable))
 
 ;; Define keyword categories
 (setq mtl-keywords '("ACV" "CONTACT" "DISCHARGE" "FOR" "MODULE" "REPEAT" "TESTMACRO"
@@ -42,11 +51,12 @@
         ;;(,mtl-expressions-regexp . font-lock-warning-face)
         ))
 
-(define-derived-mode mtl-mode prog-mode
+(define-derived-mode mtl-mode fundamental-mode
   "mtl mode"
   "Major mode for editing Aeroflex ICT mtl files"
 
   ;; code for syntax highlighting
+  (set-syntax-table mtl-syntax-table)
   (setq font-lock-defaults '((mtl-font-lock-keywords)))
   (setq comment-start "(*")
   (setq comment-end "*)"))
