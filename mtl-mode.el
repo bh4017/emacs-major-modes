@@ -57,9 +57,10 @@
 
   ;; code for syntax highlighting
   (set-syntax-table mtl-syntax-table)
-  (setq font-lock-defaults '((mtl-font-lock-keywords)))
-  (setq comment-start "(*")
-  (setq comment-end "*)"))
+  (set (make-local-variable 'font-lock-defaults)
+     '(mtl-font-lock-keywords nil t)))
+  ;;(setq font-lock-defaults '((mtl-font-lock-keywords))))
+  ;;(setq font-lock-keywords-case-fold-search t)
 
 ;; Clear memory (no longer needed)
 (setq mtl-keywords nil)
