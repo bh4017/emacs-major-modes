@@ -30,16 +30,20 @@
                      "WHILE"))
 
 (setq mtl-types '("int" "float" "string" "value" "pinlist" "enum" "bits"))
-
-;(setq mtl-expressions '("+" "-" "*" "/" "\" "||" "&&" "|" "&" "^" ":=" "~" "!"
-;                        "<<" ">>" "=" "!=" "<>" ">" "<" "<=" ">="))
-
-(setq mtl-functions '("printf"))
+(setq mtl-functions '("printf" "sprintf" "fopen" "fread" "fwrite" "fprintf"
+                      "fseek" "fgetc" "fgets" "fputc" "fputs" "getchar" "gets"
+                      "putchar" "puts" "atoi" "atof" "atos" "atopin" "open"
+                      "read" "write" "lseek" "close" "select" "findfile"
+                      "vt.position" "vt.cursor" "vt.mode" "vt.attributes.type"
+                      "vt.attributes" "vt.status" "vt.save" "vt.restore"
+                      "vt.charset" "vt.pagemode" "vt.clearscreen" "vt.clearline"
+                      "vt.passall" "vt.flush" "vt.panel" "vt.scroll"
+                      "vt.message" "vt.optimise" "vt.wrap" "vt.fulledit"
+                      "loadmap"))
 
 ;; Generate regex string for each keyword category
 (setq mtl-keywords-regexp (regexp-opt mtl-keywords 'words))
 (setq mtl-types-regexp (regexp-opt mtl-types 'words))
-;;(setq mtl-expressions-regexp (regexp-opt mtl-expressions 'words))
 (setq mtl-functions-regexp (regexp-opt mtl-functions 'words))
 
 ;; Create the list for font-lock
@@ -48,7 +52,6 @@
         (,mtl-types-regexp . font-lock-type-face)
         (,mtl-functions-regexp . font-lock-builtin-face)
         (,mtl-keywords-regexp . font-lock-keyword-face)
-        ;;(,mtl-expressions-regexp . font-lock-warning-face)
         ))
 
 (define-derived-mode mtl-mode fundamental-mode
@@ -59,8 +62,6 @@
   (set-syntax-table mtl-syntax-table)
   (set (make-local-variable 'font-lock-defaults)
      '(mtl-font-lock-keywords nil t)))
-  ;;(setq font-lock-defaults '((mtl-font-lock-keywords))))
-  ;;(setq font-lock-keywords-case-fold-search t)
 
 ;; Clear memory (no longer needed)
 (setq mtl-keywords nil)
