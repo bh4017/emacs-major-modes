@@ -11,6 +11,7 @@
 
 ;; LICENSE:
 
+
 (defvar mtl-syntax-table nil "Syntax table for mtl-mode")
 (setq mtl-syntax-table
       (let((synTable(make-syntax-table)))
@@ -54,14 +55,18 @@
         (,mtl-keywords-regexp . font-lock-keyword-face)
         ))
 
-(define-derived-mode mtl-mode fundamental-mode
+(define-derived-mode mtl-mode cc-mode
   "mtl mode"
   "Major mode for editing Aeroflex ICT mtl files"
 
-  ;; code for syntax highlighting
-  (set-syntax-table mtl-syntax-table)
+;; code for syntax highlighting
+	(set-syntax-table mtl-syntax-table)
   (set (make-local-variable 'font-lock-defaults)
-     '(mtl-font-lock-keywords nil t)))
+			 '(mtl-font-lock-keywords nil t)))
+
+;; Setup tabs
+(setq-default indent-tabs-mode t)
+(setq tab-width 2)
 
 ;; Clear memory (no longer needed)
 (setq mtl-keywords nil)
