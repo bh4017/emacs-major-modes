@@ -55,7 +55,7 @@
         (,mtl-keywords-regexp . font-lock-keyword-face)
         ))
 
-(define-derived-mode mtl-mode cc-mode
+(define-derived-mode mtl-mode c-mode
   "mtl mode"
   "Major mode for editing Aeroflex ICT mtl files"
 
