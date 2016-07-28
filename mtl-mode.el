@@ -30,7 +30,7 @@
                      "TRACK" "CASE" "DIODE" "FET" "LINK" "PULSE" "TESTBLOCK" "TRAN"
                      "WHILE"))
 
-(setq mtl-types '("int" "float" "string" "value" "pinlist" "enum" "bits"))
+(setq mtl-types '("int" "float" "string" "value" "pinlist" "enum" "bits" "void"))
 (setq mtl-functions '("printf" "sprintf" "fopen" "fread" "fwrite" "fprintf"
                       "fseek" "fgetc" "fgets" "fputc" "fputs" "getchar" "gets"
                       "putchar" "puts" "atoi" "atof" "atos" "atopin" "open"
@@ -40,7 +40,7 @@
                       "vt.charset" "vt.pagemode" "vt.clearscreen" "vt.clearline"
                       "vt.passall" "vt.flush" "vt.panel" "vt.scroll"
                       "vt.message" "vt.optimise" "vt.wrap" "vt.fulledit"
-                      "loadmap"))
+                      "loadmap" "sizeof"))
 
 ;; Generate regex string for each keyword category
 (setq mtl-keywords-regexp (regexp-opt mtl-keywords 'words))
@@ -55,7 +55,7 @@
         (,mtl-keywords-regexp . font-lock-keyword-face)
         ))
 
-(define-derived-mode mtl-mode c-mode
+(define-derived-mode mtl-mode prog-mode
   "mtl mode"
   "Major mode for editing Aeroflex ICT mtl files"
 
